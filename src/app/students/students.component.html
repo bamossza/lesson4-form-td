@@ -1,0 +1,127 @@
+<h3>Registering Student</h3>
+<div class="row">
+    <div class="col-md-5">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
+            <div id="user-data" ngModelGroup="userData">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text"
+                           id="fullName"
+                           class="form-control"
+                           name="fullName"
+                           ngModel
+                           required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Mail</label>
+                    <input type="email"
+                           id="email"
+                           class="form-control"
+                           name="email"
+                           ngModel
+                           required
+                           email
+                           #email="ngModel">
+                    <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+                </div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input type="radio"
+                                   id="sexMale"
+                                   value="Male"
+                                   checked
+                                   name="sex"
+                                   [ngModel]="defaultSex">
+                            ชาย
+                        </label>
+                        <label>
+                            <input type="radio"
+                                   id="sexFemale"
+                                   value="Female"
+                                   name="sex"
+                                   [ngModel]="defaultSex">
+                            หญิง
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text"
+                           id="username"
+                           class="form-control"
+                           name="username"
+                           ngModel>
+                </div>
+                <button class="btn btn-default"
+                        (click)="suggestUserName()"
+                        type="button">Suggest an Username</button>
+                <hr>
+            </div>
+            <div class="form-group">
+                <label for="secret">Secret Questions</label>
+                <select id="secret"
+                        class="form-control"
+                        name="secret"
+                        [ngModel]="defaultSecret">
+                    <option value="pet">สัตว์เลี้ยงตัวแรกของคุณ?</option>
+                    <option value="teacher">ครูคนแรกของคุณ?</option>
+                    <option value="car">รถคันแรกของคุณ?</option>
+                </select>
+            </div>
+            <button class="btn btn-primary"
+                    type="submit"
+                    [disabled]="!f.valid">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> ลงทะเบียน
+            </button>
+        </form>
+    </div>
+    <div class="col-md-7" *ngIf="submitted">
+        <h5>Output Data:</h5>
+        <hr>
+        <p>Full Name: {{ user.userData.fullName }}</p>
+        <p>Username: {{ user.userData.username }}</p>
+        <p>E-Mail: {{ user.userData.email }}</p>
+        <p>Sex: {{ user.userData.sex }}</p>
+        <p>Secret: {{ user.secret }}</p>
+    </div>
+</div>
+<hr>
+
+
+
+
+
+
+
+<!--<p>Student Name</p>-->
+<!--<input type="text"-->
+<!--class="form-control"-->
+<!--(input)="onUpdateStudentName($event)">-->
+<!--&lt;!&ndash;<input type="text"&ndash;&gt;-->
+<!--&lt;!&ndash;class="form-control"&ndash;&gt;-->
+<!--&lt;!&ndash;[ngModel]="studentNewName">&ndash;&gt;-->
+<!--&lt;!&ndash;<p>{{ studentNewName }}</p>&ndash;&gt;-->
+<!--<br>-->
+<!--<button type="button" class="btn btn-primary"-->
+<!--[disabled]="!allowNewStudent"-->
+<!--(click)="onCreateStudent()">Add Student</button>-->
+<!--&lt;!&ndash;<p>{{ studentCreationStatus }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;<p [innerText]="allowNewStudent"></p>&ndash;&gt;-->
+
+<!--<p *ngIf="studentCreated; else noStudent">Student created, student name is {{ studentNewName }}</p>-->
+
+<!--<ng-template #noStudent>-->
+<!--<p>No Student created!</p>-->
+<!--</ng-template>-->
+
+
+<!--<p *ngFor="let item of studentList; let n = index;"-->
+<!--[ngStyle]="{ color: getColorStatus(item.studentStatus) }"-->
+<!--[ngClass]="{ fontBold: true }">-->
+<!--Index: {{ n }}-->
+<!--Student Name: {{ item.studentName }}-->
+<!--with ID: {{ item.studentId }}-->
+<!--Status: {{ item.studentStatus }}</p>-->
+
+<!--<hr>-->
